@@ -23,8 +23,20 @@ pk=""
 
 for ((i=1; i<=cols; i++)); do
     read -p "Column $i name: " col
-    read -p "Datatype (int/string): " type
 
+    # Loop until user enters a valid datatype
+    while true
+    do
+        read -p "Datatype (int/string): " type
+        type=$(echo "$type" | tr '[:upper:]' '[:lower:]')  # convert to lowercase
+        if [[ "$type" == "int" || "$type" == "string" ]]; then
+            break
+        else
+            echo "Invalid datatype! Please enter 'int' or 'string'."
+        fi
+    done
+
+    # Set primary key as first column
     if [[ $i -eq 1 ]]; then
         pk=$col
     fi
@@ -32,6 +44,7 @@ for ((i=1; i<=cols; i++)); do
     schema+="$col:"
     types+="$type:"
 done
+
 
 # Write metadata
 echo "${schema%:}" > "$metaFile"
