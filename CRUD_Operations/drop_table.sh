@@ -2,8 +2,8 @@
 
 read -p "Enter table name to drop: " table
 
-metaFile="../Tables/Metadata/$table.meta"
-dataFile="../Tables/Data/$table.data"
+dataFile="$HOME/Desktop/DBMS/Tables/Data/$table.data"
+metaFile="$HOME/Desktop/DBMS/Tables/Metadata/$table.meta"
 
 # Check if table exists
 if [[ ! -f "$metaFile" ]]; then

@@ -2,8 +2,8 @@
 
 read -p "Enter Table Name: " table
 
-dataFile="../Tables/Data/$table.data"
-metaFile="../Tables/Metadata/$table.meta"
+dataFile="$HOME/Desktop/DBMS/Tables/Data/$table.data"
+metaFile="$HOME/Desktop/DBMS/Tables/Metadata/$table.meta"
 
 # Check if table already exists
 if [[ -f "$metaFile" ]]; then

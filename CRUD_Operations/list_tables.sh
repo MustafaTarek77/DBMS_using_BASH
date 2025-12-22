@@ -1,6 +1,6 @@
 #!/bin/bash
 
-meta_dir="../Tables/Metadata"
+meta_dir="$HOME/Desktop/DBMS/Tables/Metadata"
 
 # Check if directory exists
 if [[ ! -d "$meta_dir" ]]; then
