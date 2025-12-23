@@ -30,6 +30,6 @@
     }
 
     # Register database in catalog
-    echo "$DB_NAME:$(date +"%Y-%m-%d %H:%M:%S"):$USER" >> "$CATALOG"
+    echo "$DB_NAME:$(date +"%Y-%m-%d %H-%M-%S"):$USER" >> "$CATALOG"
 
     echo "Database '$DB_NAME' created successfully"
