@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -e
 chmod +x ./init.sh
 ./init.sh
 
@@ -12,7 +11,6 @@ do
         1)
             read -p "Enter Database Name: " db_name
             ./db_handler/create_db.sh "$db_name"
-            break
 	    ;;
         2)
             ./db_handler/list_db.sh

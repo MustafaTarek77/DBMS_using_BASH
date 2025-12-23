@@ -1,10 +1,8 @@
 #!/bin/bash
 
-
 mkdir -p db_storage
 mkdir -p db_handler
-mkdir -p catalog
-touch catalog/databases.meta
+touch databases.meta
 
 
 for script in "create_db.sh" "list_db.sh" "connect_db.sh" "drop_db.sh"; do

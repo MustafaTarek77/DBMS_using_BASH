@@ -1,34 +1,35 @@
-#!/bin/bash
+    #!/bin/bash
 
-DB_NAME="$1"
-DB_PATH="db_storage/$DB_NAME"
-CATALOG="catalog/databases.meta"
+    DB_NAME="$1"
+    DB_PATH="db_storage/$DB_NAME"
+    CATALOG="databases.meta"
 
-if [[ -z "$DB_NAME" ]]; then
-    echo "Error: Database name is required"
-    exit 1
-fi
 
-if [[ ! "$DB_NAME" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]]; then
-    echo "ERROR: Invalid database name"
-    exit 1
-fi
+    # Check database name provided
+    if [[ -z "$DB_NAME" ]]; then
+        echo "ERROR: Database name is required"
+        exit
+    fi
 
-if [[ -d "$DB_PATH" ]]; then
-    echo "ERROR: Database already exists"
-    exit 1
-fi
+    # Validate database name
+    if [[ ! "$DB_NAME" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]]; then
+        echo "ERROR: Invalid database name"
+        exit
+    fi
 
-mkdir -p "$DB_PATH/tables" || {
-    echo "ERROR: Failed to create database directory"
-    exit 1
-}
+    # Check if database already exists
+    if [[ -d "$DB_PATH" ]]; then
+        echo "ERROR: Database already exists"
+        exit
+    fi
 
-cat > "$DB_PATH/db.meta" <<EOF
-name=$DB_NAME
-created_at=$(date +"%Y-%m-%d %H:%M:%S")
-EOF
+    # Create database directories
+    mkdir -p "$DB_PATH/tables_meta" "$DB_PATH/tables_data" || {
+        echo "ERROR: Failed to create database structure"
+        exit
+    }
 
-echo "$DB_NAME" >> "$CATALOG"
+    # Register database in catalog
+    echo "$DB_NAME:$(date +"%Y-%m-%d %H:%M:%S"):$USER" >> "$CATALOG"
 
-echo "Database '$DB_NAME' created successfully"
+    echo "Database '$DB_NAME' created successfully"
