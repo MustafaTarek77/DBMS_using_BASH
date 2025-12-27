@@ -14,8 +14,10 @@ for script in \
     "table_handler/create_table.sh" \
     "table_handler/list_tables.sh" \
     "table_handler/drop_table.sh" \
-    "table_handler/insert_into_table.sh" \
-    "table_handler/select_from_table.sh"
+    "record_handler/insert.sh" \
+    "record_handler/select.sh" \
+    "record_handler/delete.sh" \
+    "record_handler/update.sh";
 do
     file="./$script"
 
