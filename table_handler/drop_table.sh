@@ -2,8 +2,9 @@
 
 read -p "Enter table name to drop: " table
 
-dataFile="db_storage/$1/tables_data/$table.data"
-metaFile="db_storage/$1/tables_meta/$table.meta"
+DB_NAME="$1"
+dataFile="db_storage/$DB_NAME/tables_data/$table.data"
+metaFile="db_storage/$DB_NAME/tables_meta/$table.meta"
 echo $metaFile
 
 
