@@ -2,6 +2,11 @@
 
 read -p "Enter Table Name: " table
 
+while [[ ! "$table" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]]; do
+    echo "ERROR: Invalid table name"
+    read -p "Enter Table Name: " table
+done
+
 DB_NAME="$1"
 dataFile="db_storage/$DB_NAME/tables_data/$table.data"
 metaFile="db_storage/$DB_NAME/tables_meta/$table.meta"
@@ -12,18 +17,33 @@ if [[ -f "$metaFile" ]]; then
     exit 1
 fi
 
-read -p "Number of columns: " cols
-if [[ ! "$cols" =~ ^[0-9]+$ ]]; then
-    echo "Error, enter a valid number"
-    exit 1
-fi
+# Prompt for number of columns until a valid positive integer is entered
+while true; do
+    read -p "Number of columns: " cols
+    if [[ "$cols" =~ ^[1-9][0-9]*$ ]]; then
+        break
+    fi
+    echo "Error: enter a valid positive number (>=1)"
+done
 
 schema=""
 types=""
 pk=""
 
 for ((i=1; i<=cols; i++)); do
-    read -p "Column $i name: " col
+    # Prompt for a valid, non-duplicate column name
+    while true; do
+        read -p "Column $i name: " col
+        if [[ ! "$col" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]]; then
+            echo "Invalid column name. Use letters, numbers and underscores, not starting with a digit."
+            continue
+        fi
+        if [[ "$schema" == *"$col:"* ]]; then
+            echo "Column '$col' already defined. Choose a different name."
+            continue
+        fi
+        break
+    done
 
     # Loop until user enters a valid datatype
     while true

@@ -3,11 +3,19 @@
 chmod +x ./init.sh
 ./init.sh
 
-PS3="Enter your choice: "
+options=("Create Database" "List Databases" "Connect to a Database" "Drop Database" "Exit")
 
-select choice in "Create Database" "List Databases" "Connect to a Database" "Drop Database" "Exit"
-do
-    case $REPLY in
+while true; do
+    echo ""
+    echo "Select an option:"
+    for i in "${!options[@]}"; do
+        idx=$((i+1))
+        printf "%2d) %s\n" "$idx" "${options[$i]}"
+    done
+
+    read -p "Enter your choice (1-${#options[@]}): " choice
+
+    case $choice in
         1)
             read -p "Enter Database Name: " db_name
             ./db_handler/create_db.sh "$db_name"
