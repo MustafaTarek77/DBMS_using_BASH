@@ -1,27 +1,46 @@
 #!/bin/bash
 
+# ===============================
+# COLORS
+# ===============================
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[1;33m"
+CYAN="\033[0;36m"
+NC="\033[0m"
+
+# ===============================
+# INIT
+# ===============================
 chmod +x ./init.sh
 ./init.sh
 
-options=("Create Database" "List Databases" "Connect to a Database" "Drop Database" "Exit")
-
+# ===============================
+# MAIN MENU
+# ===============================
 while true; do
-    echo ""
-    echo "Select an option:"
-    for i in "${!options[@]}"; do
-        idx=$((i+1))
-        printf "%2d) %s\n" "$idx" "${options[$i]}"
-    done
+    clear
+    echo -e "${CYAN}==============================${NC}"
+    echo -e "${GREEN}      DATABASE MANAGER        ${NC}"
+    echo -e "${CYAN}==============================${NC}"
+    echo -e "${YELLOW}1) Create Database${NC}"
+    echo -e "${YELLOW}2) List Databases${NC}"
+    echo -e "${YELLOW}3) Connect to a Database${NC}"
+    echo -e "${YELLOW}4) Drop Database${NC}"
+    echo -e "${RED}5) Exit${NC}"
+    echo -e "${CYAN}------------------------------${NC}"
 
-    read -p "Enter your choice (1-${#options[@]}): " choice
+    read -p "Choose [1-5]: " choice
 
     case $choice in
         1)
             read -p "Enter Database Name: " db_name
             ./db_handler/create_db.sh "$db_name"
-	        ;;
+            read -p "Press Enter to continue..."
+            ;;
         2)
             ./db_handler/list_db.sh
+            read -p "Press Enter to continue..."
             ;;
         3)
             read -p "Enter Database Name to connect: " db_name
@@ -30,14 +49,15 @@ while true; do
         4)
             read -p "Enter Database Name to drop: " db_name
             ./db_handler/drop_db.sh "$db_name"
+            read -p "Press Enter to continue..."
             ;;
         5)
-            echo "Exiting..."
-            break
+            echo -e "${RED}Exiting...${NC}"
+            exit 0
             ;;
         *)
-            echo "Invalid option, please try again."
+            echo -e "${RED}Invalid option, please try again.${NC}"
+            read -p "Press Enter to continue..."
             ;;
     esac
 done
-
