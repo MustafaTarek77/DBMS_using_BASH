@@ -1,23 +1,15 @@
 #!/bin/bash
 
-# ===============================
-# COLORS
-# ===============================
 RED="\033[0;31m"
 GREEN="\033[0;32m"
 YELLOW="\033[1;33m"
 CYAN="\033[0;36m"
 NC="\033[0m"
 
-# ===============================
-# INIT
-# ===============================
+# run initialization script
 chmod +x ./init.sh
 ./init.sh
 
-# ===============================
-# MAIN MENU
-# ===============================
 while true; do
     clear
     echo -e "${CYAN}==============================${NC}"
@@ -53,7 +45,7 @@ while true; do
             ;;
         5)
             echo -e "${RED}Exiting...${NC}"
-            exit 0
+            break
             ;;
         *)
             echo -e "${RED}Invalid option, please try again.${NC}"
