@@ -12,14 +12,14 @@ is_non_empty() {
         exit
     fi
 }
-is_db_does_not_exist() {
+is_db_exists() {
     if [[ -d "db_storage/$1" ]]; then
         echo "ERROR: Database '$1' already exists"
         exit
     fi
 }
 
-is_db_exists() {
+is_db_does_not_exist() {
     if [[ ! -d "db_storage/$1" ]]; then
         echo "ERROR: Database '$1' does not exist"
         exit

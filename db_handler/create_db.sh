@@ -12,8 +12,7 @@ CATALOG="databases.meta"
 
 is_non_empty "$DB_NAME"
 is_valid_name "$DB_NAME"
-
-is_db_does_not_exist "$DB_NAME"
+is_db_exists "$DB_NAME"
 
 # Create database directories
 mkdir -p "$DB_PATH/tables_meta" "$DB_PATH/tables_data" || {

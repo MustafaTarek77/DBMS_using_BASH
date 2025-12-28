@@ -28,7 +28,7 @@ while true; do
         1)
             read -p "Enter Database Name: " db_name
             ./db_handler/create_db.sh "$db_name"
-            read -p "Press Enter to continue..."
+            read -p "Press Enter to select ..."
             ;;
         2)
             ./db_handler/list_db.sh
@@ -37,6 +37,7 @@ while true; do
         3)
             read -p "Enter Database Name to connect: " db_name
             ./db_handler/connect_db.sh "$db_name"
+            read -p "Press Enter to continue..."
             ;;
         4)
             read -p "Enter Database Name to drop: " db_name
