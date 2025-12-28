@@ -41,6 +41,6 @@ and tables on disk using plain directories and files.
 4. Inspect `db_storage/` to see how databases and tables are stored.
 
 
-## Contributing
+## Contributers
 - Mustafa Tarek 
 - Sherif Mohammed
