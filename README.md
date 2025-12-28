@@ -1,15 +1,46 @@
-# DBMS_using_BASH
+# Bash DBMS (Shell Script)
 
-Bash Shell Script Database Management System (DBMS):
-The Project aims to develop DBMS that will enable users to store and
-retrieve the data from Hard-disk.
-The Project Features:
-The Application will be CLI Menu based app, that will provide to user
-this Menu items:
-Main Menu:- Create Database- List Databases- Connect To Databases- Drop Database
-Upon user Connect to Specific Database, there will be new Screen with
-this Menu:- Create Table- List Tables- Drop Table- Insert into Table- Select From Table- Delete From Table- Update Table
-Hints:- The Database will store as Directory on Current Script File- The Select of Rows displayed in screen/terminal in an Accepted/Good
-Format- Ask about columns datatypes in create table and check on them in both
-insert and update-Ask about primary key in create table and check for it in the insert into table
-The Bonus:- Make the App to accept SQL Code or Use GUI instead of the above menu based
+A simple command-line Database Management System (DBMS) implemented in Bash.
+This project provides a menu-driven CLI app for creating and managing databases
+and tables on disk using plain directories and files.
+
+---
+
+## Features
+
+- **Main menu** operations:
+  - Create Database
+  - List Databases
+  - Connect to Database
+  - Drop Database
+- **Within a connected database:**
+  - Create Table (with columns, datatypes, and primary key)
+  - List Tables
+  - Drop Table
+  - Insert into Table (validates datatypes and primary key)
+  - Select from Table (prints rows in a readable table format)
+  - Delete from Table
+  - Update Table (validates datatypes and primary key constraints)
+
+## How to run
+
+1. Make sure scripts are executable:
+
+   ```bash
+   chmod +x *.sh table_handler/*.sh db_handler/*.sh record_handler/*.sh
+   ```
+
+2. Start the app:
+
+   ```bash
+   ./main.sh
+   ```
+
+3. Follow the interactive menu to create databases and tables, insert/select/update/delete records.
+
+4. Inspect `db_storage/` to see how databases and tables are stored.
+
+
+## Contributing
+- Mustafa Tarek 
+- Sherif Mohammed
