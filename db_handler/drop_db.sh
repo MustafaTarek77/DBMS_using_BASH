@@ -1,18 +1,16 @@
 #!/bin/bash
 
+YELLOW="\033[1;33m"
+NC="\033[0m" # No Color
+
+source ./utils/validations.sh
+
 DB_NAME="$1"
 DBS_META="databases.meta"
 DB_PATH="db_storage/$DB_NAME"
 
-if [[ -z "$DB_NAME" ]]; then
-    echo "ERROR: Database name is required"
-    exit 1
-fi
-
-if ! grep -q "^$DB_NAME:" "$DBS_META"; then
-    echo "ERROR: Database '$DB_NAME' does not exist"
-    exit 1
-fi
+is_non_empty "$DB_NAME"
+is_db_exists "$DB_NAME"
 
 sed -i "/^$DB_NAME:/d" "$DBS_META"
 
@@ -21,5 +19,8 @@ if [[ -d "$DB_PATH" ]]; then
     rm -rf "$DB_PATH"
 fi
 
-
-echo "Database '$DB_NAME' dropped successfully"
+echo
+echo "-------------------------------------------"
+echo -e "Database ${YELLOW}'$DB_NAME'${NC} dropped successfully"
+echo "-------------------------------------------"
+echo
